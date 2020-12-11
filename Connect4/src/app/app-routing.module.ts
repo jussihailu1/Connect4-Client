@@ -1,3 +1,4 @@
+import { LoadingComponent } from './loading/loading.component';
 import { GameComponent } from './game/game.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -8,6 +9,8 @@ const routes: Routes = [
   {path: "login", component: LoginComponent},
   {path: "home", component: HomeComponent},
   {path: "game", component: GameComponent},
+  {path: "loading", component: LoadingComponent},
+  
   {path: "", redirectTo: "/login", pathMatch: "full"},
   // {path: "**", component: LoginComponent}
 ];
@@ -21,5 +24,6 @@ export class AppRoutingModule { }
 export const RoutingComponents = [
   LoginComponent, 
   HomeComponent,
-  GameComponent
+  GameComponent,
+  LoadingComponent
 ]

@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   }
 
   searchGame(): void {
-    this.router.navigate(["game"]);
+    this.router.navigate(["loading"]);
   }
 
 }

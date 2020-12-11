@@ -8,3 +8,27 @@ html,
 body {
   height: 100%;
 }
+
+.container {
+  background-color: #cfe8ff;
+  border-radius: 20px;
+  padding: 5%;
+  margin: 2%;
+  box-shadow: 5px 5px;
+}
+
+.button{
+  outline: none !important;
+  border: 2px solid black;
+}
+
+.button:hover{
+  cursor: pointer;
+  box-shadow: 3px 3px;
+  transform: translate(-3px, -3px);
+}
+
+.button:active{
+  transform: translate(0px);
+  box-shadow: none;
+}
