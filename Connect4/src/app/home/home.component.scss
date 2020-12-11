@@ -1,0 +1,66 @@
+.container {
+  background-color: #cfe8ff;
+  border-radius: 20px;
+  padding: 5%;
+  margin: 2%;
+}
+
+.home-container {
+  display: flex;
+  width: 70%;
+  margin: auto;
+  border: 5px solid #cfe8ff;
+  border-radius: 33px;
+
+  .left {
+    width: 100%;
+
+    .profile-container {
+      display: flex;
+
+      .profile-img {
+        img {
+          width: 100px;
+          height: 100px;
+        }
+      }
+
+      .user-info {
+        margin: auto;
+        width: 100%;
+        margin-left: 10%;
+
+        .username {
+          font-size: xx-large;
+          margin-bottom: 2%;
+        }
+
+        .record {
+          font-size: large;
+          opacity: 0.5;
+        }
+      }
+    }
+
+    .search-game-container {
+      select,
+      button {
+        font-size: x-large;
+        // padding: 3% 0;
+        border-radius: 5px;
+        width: 100%;
+      }
+    }
+  }
+
+  .right {
+    width: 100%;
+
+    .last-game-container {
+      img {
+        width: 300px;
+        height: 300px;
+      }
+    }
+  }
+}

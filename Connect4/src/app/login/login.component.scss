@@ -1,0 +1,21 @@
+.login-container {
+  text-align: center;
+  padding: 2%;
+  background-color: #cfe8ff;
+  border-radius: 20px;
+  width: fit-content;
+  margin: auto;
+
+  p {
+    font-size: xx-large;
+    padding: 5% 0%;
+  }
+
+  input {
+    margin: 3% 0% 10% 0;
+    font-size: x-large;
+    padding: 3% 0;
+    border-radius: 5px;
+    width: 100%;
+  }
+}

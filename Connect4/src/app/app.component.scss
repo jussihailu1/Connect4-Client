@@ -1,0 +1,30 @@
+.body {
+  background-color: #45a7ff;
+  width: 100%;
+  height: 100%;
+
+  .main-container {
+    // width: 100%;
+    // margin: auto;
+    // display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .footer-container {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+
+    .footer {
+      width: 98%;
+      margin: auto;
+
+      p {
+        padding: 0.5%;
+      }
+    }
+  }
+}
