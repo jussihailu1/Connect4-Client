@@ -16,4 +16,13 @@
     border-radius: 5px;
     width: 100%;
   }
+
+  .link{
+    color: blue;
+    text-decoration: underline;
+  }
+
+  .link:hover{
+    cursor: pointer;
+  }
 }
