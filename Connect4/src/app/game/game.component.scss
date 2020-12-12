@@ -1,0 +1,47 @@
+.game-container{
+    display: flex;
+    width: 90%;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    margin-top: -2%;
+
+    .player-container{
+        padding: 2%;
+        width: 10%;
+        .profile{
+            img{
+                width: 100%;
+            }
+
+            p{
+                padding-top: 10%;
+                font-size: xx-large;
+                text-align: center;
+            }
+        }
+
+        .disc-count-container{
+            padding-top: 10%;
+            display: flex;
+
+            img{
+                display: block;
+                width: 20%;
+                height: 20%;
+                box-shadow: 3px 3px;
+                border-radius: 100%;
+            }
+
+            p{
+                padding-left: 10%;
+                width: 100%;
+                font-size: x-large;
+            }
+        }
+    }
+
+    .canvas-container{
+        padding: 3%;
+    }
+}
