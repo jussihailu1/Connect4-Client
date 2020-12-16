@@ -1,3 +1,4 @@
+import { WebsocketService } from './../_services/websocket.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -8,13 +9,18 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+    // temporary
+    private ws: WebsocketService) { }
 
   ngOnInit(): void {
+    this.ws._connect();
+    // this.ws.test()
   }
 
   signIn(): void{
-    this.router.navigate(["home"]);
+    this.ws.test();
+    // this.router.navigate(["home"]);
   }
 
 }
