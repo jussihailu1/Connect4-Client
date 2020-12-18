@@ -1,4 +1,4 @@
-import { WebsocketService } from './../_services/websocket.service';
+import { DataService } from './../_services/data.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -9,18 +9,16 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router,
-    // temporary
-    private ws: WebsocketService) { }
+  username: string;
+
+  constructor(private router: Router, private data: DataService) { }
 
   ngOnInit(): void {
-    this.ws._connect();
-    // this.ws.test()
   }
 
-  signIn(): void{
-    this.ws.test();
-    // this.router.navigate(["home"]);
+  signIn(): void {
+    this.data.setPlayer(this.username);
+    this.router.navigate(["home"]);
   }
 
 }

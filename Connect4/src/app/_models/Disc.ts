@@ -1,22 +1,17 @@
 import { CircleState } from './../_enums/CircleState';
+import { Point } from './Point';
 
 export class Disc{
-    private x: number;
-    private y: number;
+    private point: Point
     private circleState: CircleState;
 
-    constructor(x: number, y: number, circleState: CircleState) {
-        this.x = x;
-        this.y = y;
+    constructor(point: Point, circleState: CircleState) {
+        this.point = point;
         this.circleState = circleState;
     }
 
-    getX(): number{
-        return this.x;
-    }
-
-    getY(): number{
-        return this.y;
+    getPoint(): Point{
+        return this.point;
     }
 
     getCircleState(): number{

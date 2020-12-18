@@ -1,7 +1,7 @@
 export enum CircleState{
     P1,
     P2,
-    Hover1,
-    Hover2,
+    HoverP1,
+    HoverP2,
     NotClicked
 }
