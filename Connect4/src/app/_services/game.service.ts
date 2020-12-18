@@ -54,8 +54,7 @@ export class GameService {
     if (message.discIsPlaced) {
       let disc = this.findCircle(message.disc.point.x);
       disc.setCircleState(this.turn);
-      this.gameComponent.drawCircle(disc);
-      this.gameComponent.setPlayers(message.players);
+      this.gameComponent.placeDisc(message, disc);
       this.setTurn(message.turn);
     } else {
       // show some error or something;

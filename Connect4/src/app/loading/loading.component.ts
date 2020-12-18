@@ -27,9 +27,10 @@ export class LoadingComponent implements OnInit {
   }
 
   foundGame(message) {
-    let opponent = message.players.find(p => p.username != this.data.player.username)
-    this.data.setOpponent(opponent);
-    this.data.lobbyId = message.lobbyId;
+    // let opponent = message.players.find(p => p.username != this.data.player.username)
+    this.data.setPlayers(message.players);
+    this.data.setTurn(message.turn);
+    // this.data.setOpponent(opponent);
     this.router.navigate(["game"]);
   }
 }

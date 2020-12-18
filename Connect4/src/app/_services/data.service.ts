@@ -11,17 +11,24 @@ import { Injectable } from '@angular/core';
 export class DataService {
 
   player: Player;
-  opponent: Player;
-  lobbyId: number;
+  // opponent: Player;
+  turn: number;
+  myTurn: boolean;
+  players: Player[];
 
   constructor() {
   }
 
-  setPlayer(username: string){
+  setPlayers(players: Player[]){
+    this.players = players;
+    this.player.id = players.find(p => p.username == this.player.username).id;
+  }
+
+  setPlayer(username: string): void{
     this.player = new Player(username);
   }
 
-  setOpponent(player: Player){
-    this.opponent = this.opponent;
+  setTurn(turn: number): void{
+    this.turn = turn;
   }
 }

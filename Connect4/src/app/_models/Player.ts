@@ -1,4 +1,5 @@
 export class Player{
+    id: number;
     username: string;
     discCount: number;
 

@@ -76,7 +76,6 @@ export class WebsocketService {
     switch (message.messageType) {
       case MessageType.MATCH_FOUND:
         this.matchId = message.matchId;
-        console.log(message);
         this.searchGameResponse.next(message);
         break;
       case MessageType.PLACE_DISC:
