@@ -17,7 +17,7 @@ export class WebsocketService {
   private endpointPrefix = "/app/";
   private username: string;
   private matchId: number;
-  
+
   private searchGameResponse = new BehaviorSubject<any>({});
   searchGameResponseState = this.searchGameResponse.asObservable();
 
@@ -50,7 +50,7 @@ export class WebsocketService {
     this.sendMessage(message, EndpointDestination.searchMatch);
   }
 
-  sendPlaceDiscMessage(x: number){
+  sendPlaceDiscMessage(x: number) {
     let message = {
       username: this.username,
       senderDestination: this.topic,
@@ -79,6 +79,9 @@ export class WebsocketService {
         this.searchGameResponse.next(message);
         break;
       case MessageType.PLACE_DISC:
+        this.placeDiscMessage.next(message);
+        break;
+      case MessageType.GAME_WON:
         this.placeDiscMessage.next(message);
         break;
       default:

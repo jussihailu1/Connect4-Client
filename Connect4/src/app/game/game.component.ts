@@ -3,7 +3,7 @@ import { Player } from './../_models/Player';
 import { GameService } from './../_services/game.service';
 import { toTypeScript } from '@angular/compiler';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { CircleState } from '../_enums/CircleState';
+import { DiscState } from '../_enums/CircleState';
 import { Disc } from '../_models/Disc';
 import { Point } from '../_models/Point';
 
@@ -25,8 +25,11 @@ export class GameComponent implements OnInit {
   turn: number;
   prevDisc: Disc;
   players: Player[];
-  myId: number;
   myTurn: boolean;
+  me: Player;
+  opponent: Player;
+  myDiscImg: string;
+  opponentsDiscImg: string;
 
   constructor(private data: DataService, private game: GameService) { }
 
@@ -35,6 +38,8 @@ export class GameComponent implements OnInit {
     this.turn = this.data.turn;
     this.game.turn = this.data.turn;
     this.setMyTurn();
+    this.setPlayers();
+    this.setDiscImgs();
 
     this.game.setComponent(this);
     this.setSizes();
@@ -45,7 +50,8 @@ export class GameComponent implements OnInit {
     this.cvs.onclick = (m) => {
       if (this.myTurn) {
         let x = Math.floor((m.x - this.cvs.offsetLeft) / this.squareWidth);
-        if (x >= 0) {
+        if (x >= 0 && this.game.rowNotFull(x)) {
+          console.log(this.data.player.id);
           this.game.tryPlaceDisc(x);
           this.hover(x);
         }
@@ -87,44 +93,56 @@ export class GameComponent implements OnInit {
     }
   }
 
-  private getCircleColor(circleState: CircleState): string {
+  private getCircleColor(circleState: DiscState): string {
     switch (circleState) {
-      case CircleState.NotClicked:
+      case DiscState.NotClicked:
         return "white";
-      case CircleState.P1:
-        return "red";
-      case CircleState.P2:
-        return "yellow";
-      case CircleState.HoverP1:
-        return "pink";
-      case CircleState.HoverP2:
-        return "khaki";
+      case DiscState.P1:
+        return this.data.player.id == 0 ? this.data.myColor : this.data.opponentsColor;
+      case DiscState.P2:
+        return this.data.player.id == 1 ? this.data.myColor : this.data.opponentsColor;
+      case DiscState.HoverP1:
+        return "grey";
+      case DiscState.HoverP2:
+        return "grey";
       default:
         break;
     }
   }
 
-  private hover(mx): void {
-    let disc: Disc = this.game.findCircle(mx);
-    try {
-      this.drawCircle(this.prevDisc);
-    } catch (error) { }
-    this.prevDisc = disc;
-    this.drawCircle(disc, this.turn + 2);
+  private hover(x): void {
+    if (this.game.rowNotFull(x)) {
+      let disc: Disc = this.game.findCircle(x);
+      try {
+        this.drawCircle(this.prevDisc);
+      } catch (error) { }
+      this.prevDisc = disc;
+      this.drawCircle(disc, this.turn + 2);
+    }
   }
 
-  private setMyTurn(): void{
+  private setMyTurn(): void {
     this.myTurn = this.turn == this.data.player.id;
   }
 
-  placeDisc(message, disc: Disc){
+  private setDiscImgs() {
+    this.myDiscImg = "assets/" + this.data.myColor + "-disc.png";
+    this.opponentsDiscImg = "assets/" + this.data.opponentsColor + "-disc.png";
+  }
+
+  setPlayers(message?) {
+    this.players = message == undefined ? this.data.players : message.players;
+    this.me = this.players[this.data.player.id];
+    this.opponent = this.players[1 - this.data.player.id];
+  }
+
+  placeDisc(turn: number, disc: Disc) {
     this.drawCircle(disc);
-    this.players = message.players;
-    this.turn = message.turn;
+    this.turn = turn;
     this.setMyTurn();
   }
 
-  drawCircle(disc: Disc, circleState?: CircleState): void {
+  drawCircle(disc: Disc, circleState?: DiscState): void {
     this.ctx.beginPath();
     this.ctx.arc(
       disc.getPoint().getX() * this.squareWidth + this.halfSquareWidth,
@@ -133,7 +151,12 @@ export class GameComponent implements OnInit {
       0,
       2 * Math.PI
     )
-    this.ctx.fillStyle = circleState == undefined ? this.getCircleColor(disc.getCircleState()) : this.getCircleColor(circleState);
+    this.ctx.fillStyle = circleState == undefined ? this.getCircleColor(disc.getDiscState()) : this.getCircleColor(circleState);
     this.ctx.fill();
+  }
+
+  showWin(player: Player): void {
+    console.log(player);
+    alert("player " + player.username + " has won!!!");
   }
 }

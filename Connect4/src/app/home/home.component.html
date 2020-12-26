@@ -4,16 +4,26 @@
             <img src="assets/no-profile-image.png" alt="">
         </div>
         <div class="user-info">
-            <p class="username">Jussi995</p>
+            <p class="username">{{username}}</p>
             <p class="record">14 - 2 - 8</p>
         </div>
     </div>
     <div class="container search-game-container">
         <!-- Instead of dropdown, red and yellow circle to choose from -->
-        <select>
-            <option>Red</option>
-            <option>Yellow</option>
-        </select>
+        <div class="colors-container">
+            <div class="color-container left">
+                <p>You</p>
+                <select [(ngModel)]="myColor">
+                    <option *ngFor="let color of colors">{{color}}</option>
+                </select>
+            </div>
+            <div class="color-container">
+                <p>Opponent</p>
+                <select [(ngModel)]="opponentsColor">
+                    <option *ngFor="let color of colors">{{color}}</option>
+                </select>
+            </div>
+        </div>
         <button class="button" (click)="searchGame()">Search game</button>
     </div>
 </div>

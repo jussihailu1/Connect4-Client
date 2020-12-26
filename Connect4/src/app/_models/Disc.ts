@@ -1,24 +1,24 @@
-import { CircleState } from './../_enums/CircleState';
+import { DiscState } from './../_enums/CircleState';
 import { Point } from './Point';
 
 export class Disc{
     private point: Point
-    private circleState: CircleState;
+    private discState: DiscState;
 
-    constructor(point: Point, circleState: CircleState) {
+    constructor(point: Point, discState: DiscState) {
         this.point = point;
-        this.circleState = circleState;
+        this.discState = discState;
     }
 
     getPoint(): Point{
         return this.point;
     }
 
-    getCircleState(): number{
-        return this.circleState;
+    getDiscState(): number{
+        return this.discState;
     }
 
-    setCircleState(i: number){
-        this.circleState = CircleState[CircleState[i]];
+    setDiscState(i: number){
+        this.discState = DiscState[DiscState[i]];
     }
 }

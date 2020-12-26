@@ -1,4 +1,4 @@
-export enum CircleState{
+export enum DiscState{
     P1,
     P2,
     HoverP1,

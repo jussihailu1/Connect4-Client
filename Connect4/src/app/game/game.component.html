@@ -2,24 +2,30 @@
     <div class="container player-container">
         <div class="profile">
             <img src="assets/no-profile-image.png" alt="">
-            <p>Jussi995</p>
+            <p>{{me.username}}</p>
         </div>
         <div class="disc-count-container">
-            <img src="assets/red-disc.png" alt="">
-            <p> x 21</p>
+            <img src="{{myDiscImg}}" alt="">
+            <p> x {{me.discCount}}</p>
         </div>
     </div>
-    <div class="container canvas-container">
-        <canvas #canvas></canvas>
+    <div class="center-container">
+        <div class="container canvas-container">
+            <canvas #canvas></canvas>
+        </div>
+        <div class="container turn-container">
+            <p *ngIf="myTurn">Its your turn</p>
+            <p *ngIf="!myTurn">Waiting for opponent</p>
+        </div>
     </div>
     <div class="container player-container">
         <div class="profile">
             <img src="assets/no-profile-image.png" alt="">
-            <p>Jussi995</p>
+            <p>{{opponent.username}}</p>
         </div>
         <div class="disc-count-container">
-            <img src="assets/yellow-disc.png" alt="">
-            <p> x 21</p>
+            <img src="{{opponentsDiscImg}}" alt="">
+            <p> x {{opponent.discCount}}</p>
         </div>
     </div>
 </div>
