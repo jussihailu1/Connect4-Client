@@ -59,7 +59,7 @@ export class GameService {
     this.gameComponent.setPlayers(message);
 
     if (message.messageType == MessageType.GAME_WON) {
-      this.gameComponent.showWin(message.player);
+      this.gameComponent.showWin(message.player, message.winningDiscs);
     } else {
       this.setTurn(message.turn);
     }

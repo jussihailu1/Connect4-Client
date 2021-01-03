@@ -6,6 +6,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DiscState } from '../_enums/CircleState';
 import { Disc } from '../_models/Disc';
 import { Point } from '../_models/Point';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-game',
@@ -26,21 +27,23 @@ export class GameComponent implements OnInit {
   prevDisc: Disc;
   players: Player[];
   myTurn: boolean;
+  gameDone: boolean;
+  winnerUsername: string;
   me: Player;
   opponent: Player;
   myDiscImg: string;
   opponentsDiscImg: string;
 
-  constructor(private data: DataService, private game: GameService) { }
+  constructor(private data: DataService, private game: GameService, private router: Router) { }
 
   ngOnInit(): void {
     this.players = this.data.players;
     this.turn = this.data.turn;
     this.game.turn = this.data.turn;
+    this.gameDone = false;
     this.setMyTurn();
     this.setPlayers();
     this.setDiscImgs();
-
     this.game.setComponent(this);
     this.setSizes();
     this.setupCanvas();
@@ -48,7 +51,7 @@ export class GameComponent implements OnInit {
     this.drawGrid();
 
     this.cvs.onclick = (m) => {
-      if (this.myTurn) {
+      if (this.myTurn && !this.gameDone) {
         let x = Math.floor((m.x - this.cvs.offsetLeft) / this.squareWidth);
         if (x >= 0 && this.game.rowNotFull(x)) {
           console.log(this.data.player.id);
@@ -59,7 +62,7 @@ export class GameComponent implements OnInit {
     }
 
     this.cvs.onmousemove = (m) => {
-      if (this.myTurn) {
+      if (this.myTurn && !this.gameDone) {
         let x = Math.floor((m.x - this.cvs.offsetLeft) / this.squareWidth);
         if (x >= 0) { this.hover(x) };
       }
@@ -155,8 +158,34 @@ export class GameComponent implements OnInit {
     this.ctx.fill();
   }
 
-  showWin(player: Player): void {
-    console.log(player);
-    alert("player " + player.username + " has won!!!");
+  showWin(player: Player, winningDiscs: Disc[]): void {
+    this.gameDone = true;
+    this.winnerUsername = player.username;
+    this.outlineWinningDiscs(winningDiscs);
+  }
+
+  outlineWinningDiscs(winningDiscs): void {
+    const lineWidth = 6;
+
+    for (const disc of winningDiscs) {
+      this.ctx.beginPath();
+      this.ctx.arc(
+        disc.point.x * this.squareWidth + this.halfSquareWidth,
+        disc.point.y * this.squareWidth + this.halfSquareWidth,
+        this.halfSquareWidth * 0.8 + lineWidth / 2,
+        0,
+        2 * Math.PI
+      )
+      this.ctx.lineWidth = lineWidth;
+      this.ctx.stroke();
+    }
+  }
+
+  goHome(){
+    this.router.navigate(["home"]);
+  }
+
+  playAgain(){
+    this.router.navigate(["loading"]);
   }
 }

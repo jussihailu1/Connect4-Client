@@ -52,9 +52,21 @@
     .turn-container {
       padding: 2%;
       text-align: center;
-      width: fit-content;
       margin: auto;
       margin-top: 2%;
+
+      .gameDone-container {
+        * {
+          margin: 0 0.5em;
+        }
+
+        .button {
+          text-align: center;
+          font-size: larger;
+          padding: 0.5em;
+          background-color: #efefef;
+        }
+      }
     }
   }
 }

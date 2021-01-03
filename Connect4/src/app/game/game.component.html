@@ -14,8 +14,14 @@
             <canvas #canvas></canvas>
         </div>
         <div class="container turn-container">
-            <p *ngIf="myTurn">Its your turn</p>
-            <p *ngIf="!myTurn">Waiting for opponent</p>
+            <p *ngIf="!gameDone && myTurn">Its your turn</p>
+            <p *ngIf="!gameDone && !myTurn">Waiting for opponent</p>
+            <div *ngIf="gameDone" class="gameDone-container">
+                <p><b>{{winnerUsername}}</b> has won!</p>
+                <br>
+                <input (click)="playAgain()" class="button" value="Play again">
+                <input (click)="goHome()" class="button" value="Home">
+            </div>
         </div>
     </div>
     <div class="container player-container">
