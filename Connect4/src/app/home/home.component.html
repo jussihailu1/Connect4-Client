@@ -5,7 +5,8 @@
         </div>
         <div class="user-info">
             <p class="username">{{username}}</p>
-            <p class="record">14 - 2 - 8</p>
+            <p *ngIf="recordDataLoaded && playerIsGuest" class="record"> Log in to see your record! </p>
+            <p *ngIf="recordDataLoaded && !playerIsGuest" class="record"> {{ record.wins + " - " + record.draws + " - " + record.losses }}</p>
         </div>
     </div>
     <div class="container search-game-container">

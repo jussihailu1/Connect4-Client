@@ -15,17 +15,35 @@
       padding: 1% 2%;
 
       color: white;
-      text-shadow: 
-      -1px -1px 1px #000, 
-       1px -1px 1px #000,
-      -1px  1px 1px #000,
-       1px  1px 1px #000;
+      text-shadow: -1px -1px 1px #000, 1px -1px 1px #000, -1px 1px 1px #000,
+        1px 1px 1px #000;
     }
   }
 
   .main-container {
     justify-content: center;
     align-items: center;
+  }
+
+  .log-out-button-container {
+    position: absolute;
+    top: 4vh;
+    left: 3vw;
+
+    input {
+      padding: 0.3em 1.5em;
+      font-size: larger;
+    }
+
+    input:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px black;
+    }
+
+    input:active {
+      transform: translate(0px);
+      box-shadow: none;
+    }
   }
 
   .footer-container {

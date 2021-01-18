@@ -2,9 +2,13 @@
     <p>Username</p>
     <input [(ngModel)]="username" type="text" />
     <p>Password</p>
-    <input type="text" />
+    <input [(ngModel)]="password" type="text" />
     <br>
-    <input class="button" (click)="signIn()" type="button" value="Sign in">
+    <div *ngIf="loginFailed">
+        <p>Wrong credentials, try again.</p>
+        <br>
+    </div>
+    <input class="button" (click)="logIn()" type="button" value="Sign in">
     <br>
-    <a class="link" (click)="signIn()">Or play as guest</a>
+    <a class="link" (click)="playAsGuest()">Or play as guest</a>
 </div>

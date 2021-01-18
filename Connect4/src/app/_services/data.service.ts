@@ -1,3 +1,4 @@
+import { Record } from './../_models/Record';
 import { Color } from './../_enums/Color';
 import { MessageType } from './../_enums/MessageType';
 import { skip } from 'rxjs/operators';
@@ -11,6 +12,9 @@ import { Injectable } from '@angular/core';
 })
 export class DataService {
 
+  dataServerBaseURL: string = "http://localhost:8087";
+  playerIsGuest: boolean;
+  playerId: number;
   player: Player;
   turn: number;
   myTurn: boolean;
@@ -19,6 +23,7 @@ export class DataService {
   opponentsColor: string;
   myHoverColor: string;
   opponentsHoverColor: string;
+  record: Record;
 
   setPlayers(players: Player[]) {
     this.players = players;
@@ -27,6 +32,7 @@ export class DataService {
 
   setPlayer(username: string): void {
     this.player = new Player(username);
+    this.playerIsGuest = this.playerId == -1;
   }
 
   setTurn(turn: number): void {

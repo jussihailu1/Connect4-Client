@@ -1,3 +1,6 @@
+import { GameResult } from './../_enums/GameResult';
+import { RecordService } from './../_services/record.service';
+import { Record } from './../_models/Record';
 import { DataService } from './../_services/data.service';
 import { Player } from './../_models/Player';
 import { GameService } from './../_services/game.service';
@@ -34,7 +37,7 @@ export class GameComponent implements OnInit {
   myDiscImg: string;
   opponentsDiscImg: string;
 
-  constructor(private data: DataService, private game: GameService, private router: Router) { }
+  constructor(private data: DataService, private game: GameService, private router: Router, private recordService: RecordService) { }
 
   ngOnInit(): void {
     this.players = this.data.players;
@@ -161,10 +164,21 @@ export class GameComponent implements OnInit {
   showWin(player: Player, winningDiscs: Disc[]): void {
     this.gameDone = true;
     this.winnerUsername = player.username;
+    this.updateRecord();
     this.outlineWinningDiscs(winningDiscs);
   }
 
-  outlineWinningDiscs(winningDiscs): void {
+  private updateRecord(){
+    let gameResult: GameResult;
+    if(this.winnerUsername == this.data.player.username){
+      gameResult = GameResult.WIN;
+    }else{
+      gameResult = GameResult.DRAW;
+    }
+    this.recordService.updateRecord(gameResult);
+  }
+
+  private outlineWinningDiscs(winningDiscs): void {
     const lineWidth = 6;
 
     for (const disc of winningDiscs) {
@@ -181,11 +195,11 @@ export class GameComponent implements OnInit {
     }
   }
 
-  goHome(){
+  goHome(): void{
     this.router.navigate(["home"]);
   }
 
-  playAgain(){
+  playAgain(): void{
     this.router.navigate(["loading"]);
   }
 }

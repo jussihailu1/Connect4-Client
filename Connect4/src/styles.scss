@@ -24,6 +24,7 @@ input, button, select {
 }
 
 .button {
+  background-color: #efefef;
   outline: none !important;
 }
 
@@ -36,4 +37,9 @@ input, button, select {
 .button:active {
   transform: translate(0px);
   box-shadow: none;
+}
+
+.button:focus{
+  box-shadow: 3px 3px;
+  transform: translate(-3px, -3px);
 }

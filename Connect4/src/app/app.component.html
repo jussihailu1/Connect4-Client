@@ -5,10 +5,13 @@
     <div class="main-container">
         <router-outlet></router-outlet>
     </div>
+    <div *ngIf="loggedIn" class="log-out-button-container">
+        <input (click)="logOut()" class="container button" type="button" value="Sign out">
+    </div>
     <div class="footer-container">
         <div class="footer">
             <hr>
-            <p>Footer ©</p>
+            <p >Connect 4 - Jussi Hailu (414093) © </p>
         </div>
     </div>
 </div>
